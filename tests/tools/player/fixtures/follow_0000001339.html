@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant">
+<head>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-56Z9JC');</script>
+    <!-- End Google Tag Manager -->
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
+    <meta name="description" content="中華職業棒球大聯盟（CPBL），簡稱中華職棒、中職，是臺灣目前唯一的職業棒球聯盟，也是臺灣最早成立的職業運動聯盟。" />
+    <meta property="og:title" content="中華職棒大聯盟全球資訊網 The Official Site of CPBL" />
+    <meta property="og:description" content="中華職業棒球大聯盟（CPBL），簡稱中華職棒、中職，是臺灣目前唯一的職業棒球聯盟，也是臺灣最早成立的職業運動聯盟。" />
+    <meta property="og:image" content="https://cpbl.com.tw/theme/common/images/project/logo_new.png" />
+
+    
+    <title>逐場成績表 | 中華職棒大聯盟全球資訊網 The Official Site of CPBL</title>
+
+    <link rel="shortcut icon" href="/theme/client/images/favicon.ico" />
+
+    <link href="/theme/client/css/style.css?v=20220331" rel="stylesheet" type="text/css" />
+    
+
+<link href="/theme/client/css/content.css?v=20251113" rel="stylesheet" type="text/css" />
+
+
+<link href="/bundles/css?v=nzlhs8MdHZvr4Vdkx1gtXwY2K0Px_QlNX-C-c3KOB8U1" rel="stylesheet"/>
+
+<script src="/bundles/js?v=Afnc8PGvBYAnAeJynYC2Znk0e6AKkZTEMTwsK4toBJE1"></script>
+
+
+<script type="text/javascript">
+    var pgInfo = {
+        SystemPhase: 11,
+        Form: null,
+        WebSiteRoot: "/",
+        UploadRoot: "/files/"
+    };
+
+    $(function () {
+        pgInfo.Form = $("form[id='MainForm']");
+    });
+</script>
+
+
+<script type="text/javascript">
+    var captchaHelper = (function () {
+        return {
+            reset: function () {
+                $('.captcha-code').attr('src', '/pageutil/captchacode' + "?" + Math.floor(Math.random() * (1000 - 1 + 1) + 1));
+                return false;
+            }
+        };
+    })();
+
+    $(function () {
+        //captchaHelper.reset();
+    });
+</script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('.superfish').superfish();
+            $('#MenuMobile').mmenu();
+        });
+        Date.prototype.addDays = function (days) {
+            this.setDate(this.getDate() + days);
+            return this;
+        }
+        Date.prototype.format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1, //月份
+                "d+": this.getDate(), //日
+                "h+": this.getHours(), //小時
+                "m+": this.getMinutes(), //分
+                "s+": this.getSeconds(), //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds() //毫秒
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+    </script>
+
+    <link href="/theme/client/css/width_narrow.css?v=2026051502" media="only screen and (max-width: 639px)" rel="stylesheet" type="text/css" />
+    <link href="/theme/client/css/width_wide.css?v=2026051502" media="only screen and (min-width: 640px) and (max-width: 1023px)" rel="stylesheet" type="text/css" />
+    <link href="/theme/client/css/width_desktop.css?v=2026051502" media="only screen and (min-width: 1024px)" rel="stylesheet" type="text/css" />
+    
+        <script src="/theme/client/js/vue.min.js?v=20250821"></script>
+
+    
+
+
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+
+    .slide-enter-active {
+        -moz-transition-duration: 0.3s;
+        -webkit-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+    }
+
+    .slide-leave-active {
+        -moz-transition-duration: 0.3s;
+        -webkit-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+    }
+
+    .slide-enter-to, .slide-leave {
+        max-height: 500px;
+        overflow: hidden;
+    }
+
+    .slide-enter, .slide-leave-to {
+        overflow: hidden;
+        max-height: 0;
+    }
+</style>
+
+
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-56Z9JC"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div id="Wrap">
+        <header id="Header">
+            <div>
+                    <div class="Topper">
+                        <div>
+                            <div class="top_links">
+                                <ul class="list">
+                                    <li class="lang"><a href="https://en.cpbl.com.tw">English</a></li>
+                                </ul>
+                            </div>
+                            <div style="height:40px"></div>
+                        </div>
+                    </div>
+                <div class="col_left">
+                    <div class="logo">
+                        <h1><a href="/" title="中華職棒大聯盟全球資訊網 The Official Site of CPBL" style="background-image:url('/theme/common/images/project/logo_new.png');height:110%;">中華職棒大聯盟全球資訊網 The Official Site of CPBL</a></h1>
+                    </div>
+
+                    <!-- 桌機版選單 -->
+                    <nav id="Menu">
+                        <div>
+                            <ul class="menu_list superfish">
+                                <li class="home"><a href="/" title="中華職棒大聯盟全球資訊網 The Official Site of CPBL" style="background-image:url('/theme/common/images/project/logo_new.png')">中華職棒大聯盟全球資訊網 The Official Site of CPBL</a></li>
+                                <li>
+                                    <a href="javascript:;">最新消息</a>
+                                    <ul>
+                                        <li><a href="/xmdoc">賽事新聞</a></li>
+                                        <li><a href="/news">新聞公告</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/schedule">賽程</a></li>
+                                <li><a href="/box">成績看板</a></li>
+                                <li>
+                                    <a href="javascript:;">球隊戰績</a>
+                                    <ul>
+                                        <li><a href="/standings/season">本季球隊戰績</a></li>
+                                        <li><a href="/standings/special">特殊統計</a></li>
+                                        <li><a href="/standings/history">歷年球隊戰績</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">數據統計</a>
+                                    <ul>
+                                        <li><a href="/stats/toplist">單項排行榜</a></li>
+                                        <li><a href="/stats/recordall">全記錄查詢</a></li>
+                                        <li><a href="/stats/yearaward">年度獎項得主</a></li>
+                                        <li><a href="/stats/hr">歷年全壘打明細</a></li>
+                                        <li><a href="/stats/mvp">單月MVP</a></li>
+                                        <li><a href="/specialreport/cont?SId=0L090754347267822514">紀錄特別報導</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">球員</a>
+                                    <ul>
+                                        <li><a href="/player">球員點將錄</a></li>
+                                        <li><a href="/player/trans">球員異動</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="https://stats.cpbl.com.tw/" target="_blank">進階數據</a>
+                                </li>
+
+                                <li>
+                                    <a href="https://cpbl.cyberbiz.co/" >聯盟商城</a>
+                                </li>
+
+                                <!--li><a href="javascript:;">票務</a></li-->
+                                
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- 桌機版選單 end -->
+                </div>
+
+                <div class="col_right">
+                    <div class="teams">
+                        <ul>
+                                <li><a href="/team?ClubNo=ACN" title="中信兄弟" style="background-image:url('/files/file_pool/1/0l109765754453009797/logo_brothers.png')">中信兄弟</a></li>
+                                <li><a href="/team?ClubNo=ADD" title="統一7-ELEVEn獅" style="background-image:url('/files/file_pool/1/0l109765753819131779/logo_lions.png')">統一7-ELEVEn獅</a></li>
+                                <li><a href="/team?ClubNo=AJL" title="樂天桃猿" style="background-image:url('/files/file_pool/1/0o012549940550727932/2024_cpbl%e5%85%ad%e9%9a%8alogo_r2_%e5%ae%98%e7%b6%b2.png')">樂天桃猿</a></li>
+                                <li><a href="/team?ClubNo=AEO" title="富邦悍將" style="background-image:url('/files/file_pool/1/0l109765753631383724/logo_fubon.png')">富邦悍將</a></li>
+                                <li><a href="/team?ClubNo=AAA" title="味全龍" style="background-image:url('/files/file_pool/1/0l109765752096404797/logo_dragon.png')">味全龍</a></li>
+                                <li><a href="/team?ClubNo=AKP" title="台鋼雄鷹" style="background-image:url('https://www.cpbl.com.tw/files/file_pool/1/0n062433781050140053/%e5%96%ae%e8%89%b2t-100x100.png')">台鋼雄鷹</a></li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="cpbltv"><a href="https://hamivideo.hinet.net/main/606.do" target="_blank" title="CPBLTV(開啟新視窗)">CPBLTV</a></div>
+                </div>
+            </div>
+        </header>
+
+        
+
+
+
+
+
+<div id="Center">
+    <div id="Content">
+
+        <div class="PageTitle"><h2><!-- InstanceBeginEditable name="PageTitle" -->統一7-ELEVEn獅二軍<span class="en">U-Lions</span><!-- InstanceEndEditable --></h2></div>
+        <div id="Breadcrumbs">
+            <div>
+                <ul>
+                    <li><a href="/">首頁</a></li>
+                    <!-- InstanceBeginEditable name="Breadcrumbs" -->
+                        <li><a href="/team?ClubNo=ADD">統一7-ELEVEn獅二軍</a></li>
+                    <li><a href="/player">球員點將錄</a></li>
+                    <li><a href="javascript:;">林祖傑</a></li>
+                    <li><a href="javascript:;">逐場成績表</a></li>
+                    <!-- InstanceEndEditable -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- InstanceBeginEditable name="content" -->
+        <div class="ContHeader">
+
+
+<div class="PlayerBrief">
+    <div>
+        <div class="img"><span style="background-image:url(/files/atts/0L087782021106572224/39林祖傑2026.jpg)"></span></div>
+
+        <dl>
+            <dt>
+                <div class="team">統一7-ELEVEn獅二軍</div>
+                <div class="name">林祖傑<span class="number">39</span></div>
+            </dt>
+            <dd class="pos">
+                <div class="label">位置</div>
+                <div class="desc">游擊手</div>
+            </dd>
+            <dd class="b_t">
+                <div class="label">投打習慣</div>
+                <div class="desc">右投右打</div>
+            </dd>
+            <dd class="ht_wt">
+                <div class="label">身高/體重</div>
+                <div class="desc">176<span class="unit">(CM)</span> / 80<span class="unit">(KG)</span></div>
+            </dd>
+            <dd class="born">
+                <div class="label">生日</div>
+                <div class="desc">1991/05/13</div>
+            </dd>
+            <dd class="debut">
+                <div class="label">初出場</div>
+                <div class="desc">2019/03/23</div>
+            </dd>
+            <dd class="edu">
+                <div class="label">學歷</div>
+                <div class="desc">文化大學</div>
+            </dd>
+            <dd class="nationality">
+                <div class="label">國籍/出生地</div>
+                <div class="desc">中華民國</div>
+            </dd>
+            <dd class="original_name">
+                <div class="label">原名</div>
+                <div class="desc"></div>
+            </dd>
+            <dd class="draft">
+                <div class="label">選秀順位</div>
+                <div class="desc"></div>
+            </dd>
+        </dl>
+        
+    </div>
+</div>
+
+<form action="/member/followplayer?acnt=0000001339" id="FollowPlayerForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="pCzzAB8Zbg4Eyg46rh_8syPy9_aNCej1qhitDKAV_EFgCV-2tVZMB7hdDq43Y_v-RAw5n_WvZ_wkXI-7EfTWa7gTlTI1" /></form>
+<script type="text/javascript">
+    $(".dev-following-oper").show();
+    $(".dev-unfollow-oper").hide();
+</script>
+
+<script type="text/javascript">
+
+    
+    function followPlayer(acnt, action) {
+        var form = $("form[id='FollowPlayerForm']");
+
+        $("body").block({ message: '<img alt="" border="0" src="/theme/common/images/loader.gif" />', css: { width: "32px", height: "32px", border: "0px" }, overlayCSS: { backgroundColor: "#fff" } });
+
+        $.ajax({
+            url: "/member/followplayer",
+            type: "post",
+            async: true,
+            data: { acnt: acnt, action: action, __RequestVerificationToken: form.find("input[name='__RequestVerificationToken']").val() },
+            success: function (result) {
+                if (result.Success) {
+                    if (action === 1) {
+                        $(".dev-following-oper").hide();
+                        $(".dev-unfollow-oper").show();
+                    } else {
+                        $(".dev-following-oper").show();
+                        $(".dev-unfollow-oper").hide();
+                    }
+                    $(".dev-total-followers").html(result.TotalFollowers);
+                }
+            },
+            error: function (errMsg) {
+                console.log(errMsg)
+            },
+            complete: function () {
+                $("body").unblock()
+            }
+        });
+    }
+
+</script>
+
+            <a name="ch_bottom"></a>
+        </div>
+        <!--ContHeader end-->
+
+        <a name="RecordTableWrap"></a>
+
+        <!--PlayerHeader-->
+        <div class="PlayerHeader">
+            <!--球員選單-->
+
+
+<div class="PlayerHeader">
+    <!--球員選單-->
+    <div class="PlayerNav ContNav">
+        <div class="nav_trigger">逐場成績表</div>
+        <div class="nav_list">
+            <ul>
+                <li><a href="/team/person?Acnt=0000001339">個人成績表</a></li>
+                <li><a href="/team/hr?Acnt=0000001339">全壘打明細</a></li>
+                <li><a href="/team/apart?Acnt=0000001339">分項成績</a></li>
+                <li><a href="/team/fighting?Acnt=0000001339">投打對決</a></li>
+                <li><a href="/team/follow?Acnt=0000001339">逐場成績表</a></li>
+                
+            </ul>
+        </div>
+    </div>
+    <!--球員選單 end-->
+    <a name="ph_bottom"></a>
+</div>
+
+<script>
+    $(function () {
+        var str = '逐場成績表';
+        $('.nav_list ul li a').each(function() {
+            if (str.indexOf($(this).text()) != -1) {
+                $(this).parent().attr("class","actived");
+            }
+        });
+    });
+</script>
+            <!--球員選單 end-->
+            <a name="ph_bottom"></a>
+        </div>
+        <!--PlayerHeader end-->
+
+        <div id="bindVue" v-cloak=v-cloak>
+            <div class="DistTitle">
+                <h3>逐場成績表<span class="en"></span></h3>
+                <div class="search FormElmt">
+                    <div class="item">
+                        <select name="kindcode" v-model="kindCode" v-on:change="getSelectOpts()">
+                            <option v-for="(item, index) in options.kindCodeOpts" :key="index" :value="item.Value">{{ item.Text }}</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <select name="year" v-model="year">
+                            <option v-for="(item, index) in options.yearOpts" :key="index" :value="item.Value">{{ item.Text }}年</option>
+                        </select>
+                    </div>
+                    <div class="btn"><input id="submit" type="button" v-on:click="getFollowScore()" value="查詢" /></div>
+                </div>
+            </div>
+
+            <div class="RecordTableWrap">
+                <div class="record_table_swipe_guide">
+                    <div class="desktop"></div>
+                    <div class="mobile"></div>
+                </div>
+                <div class="record_table_scroll_ctrl">
+                    <a href="javascript:;" class="scroll_left"></a>
+                    <a href="javascript:;" class="scroll_right"></a>
+                </div>
+                <div class="RecordTableOuter">
+                    <div class="RecordTable">
+                        <!--野手逐場打擊成績表-->
+                        <table v-if="defendStation != '投手'">
+                            <tr>
+                                <th class="sticky num">日期</th>
+                                <th class="num">場次</th>
+                                <th>對戰</th>
+                                <th class="num">打席</th>
+                                <th class="num">打數</th>
+                                <th class="num">打點</th>
+                                <th class="num">得分</th>
+                                <th class="num">安打</th>
+                                <th class="num">二安</th>
+                                <th class="num">三安</th>
+                                <th class="num">全壘打</th>
+                                <th class="num">壘打數</th>
+                                <th class="num">三振</th>
+                                <th class="num">盜壘</th>
+                                <th class="num">盜壘失敗</th>
+                                <th class="num" title="打擊率=安打-打數">打擊率</th>
+                                <th class="num">犧短</th>
+                                <th class="num">犧飛</th>
+                                <th class="num">四壞</th>
+                                <th class="num">（故四）</th>
+                                <th class="num">死球</th>
+                                <th class="num">雙殺打</th>
+                                <th class="num">三殺打</th>
+                                <th class="num">殘壘</th>
+                                <th class="num">刺殺</th>
+                                <th class="num">助殺</th>
+                                <th class="num">雙殺</th>
+                                <th class="num">三殺</th>
+                                <th class="num">失誤</th>
+                                <th class="num">盜壘阻殺</th>
+                                <th class="num">捕逸</th>
+                            </tr>
+                            <tr v-for="(item, index) in followScore" :key="item.SId.Value">
+                                <td class="sticky num">{{ dateFormat(new Date(item.GameDate), "YYYY/MM/DD") }}</td>
+                                <td class="num"><a :href="getGameUrl(item.GameDate, item.KindCode, item.GameSno, item.PresentStatus)">{{ item.GameSno }}</a></td>
+                                <td>{{ item.FightTeamAbbrName }}</td>
+                                <td class="num">{{ item.PlateAppearances }}</td>
+                                <td class="num">{{ item.HitCnt }}</td>
+                                <td class="num">{{ item.RunBattedINCnt }}</td>
+                                <td class="num">{{ item.ScoreCnt }}</td>
+                                <td class="num">{{ item.HittingCnt }}</td>
+                                <td class="num">{{ item.TwoBaseHitCnt }}</td>
+                                <td class="num">{{ item.ThreeBaseHitCnt }}</td>
+                                <td class="num">{{ item.HomeRunCnt }}</td>
+                                <td class="num">{{ item.TotalBases }}</td>
+                                <td class="num">{{ item.StrikeOutCnt }}</td>
+                                <td class="num">{{ item.StealBaseOKCnt }}</td>
+                                <td class="num">{{ item.StealBaseFailCnt }}</td>
+                                <td class="num">{{ item.Avg.toFixed(3) }}</td>
+                                <td class="num">{{ item.SacrificeHitCnt }}</td>
+                                <td class="num">{{ item.SacrificeFlyCnt }}</td>
+                                <td class="num">{{ item.BasesONBallsCnt }}</td>
+                                <td class="num">（{{ item.IntentionalBasesONBallsCnt }}）</td>
+                                <td class="num">{{ item.HitBYPitchCnt }}</td>
+                                <td class="num">{{ item.DoublePlayBatCnt }}</td>
+                                <td class="num">{{ item.TripplePlayBatCnt }}</td>
+                                <td class="num">{{ item.Lobs }}</td>
+                                <td class="num">{{ item.PutoutCnt }}</td>
+                                <td class="num">{{ item.AssistCnt }}</td>
+                                <td class="num">{{ item.JoinDoublePlayCnt }}</td>
+                                <td class="num">{{ item.JoinTripplePlayCnt }}</td>
+                                <td class="num">{{ item.ErrorCnt }}</td>
+                                <td class="num">{{ item.CaughtStealingCnt }}</td>
+                                <td class="num">{{ item.PassedBallCnt }}</td>
+                            </tr>
+                        </table>
+                        <!--野手逐場打擊成績表 end-->
+                        <!--投手逐場投球成績表-->
+                        <table v-else>
+                            <tr>
+                                <th class="num sticky">日期</th>
+                                <th class="num">場次</th>
+                                <th>對戰</th>
+                                <th>投球身份</th>
+                                <th>結果</th>
+                                <th class="num">投球局數</th>
+                                <th class="num">面對打席</th>
+                                <th class="num">總投球數</th>
+                                <th class="num">被安打</th>
+                                <th class="num">被全壘打</th>
+                                <th class="num">奪三振</th>
+                                <th class="num">失分</th>
+                                <th class="num">自責分</th>
+                                <th class="num">四壞</th>
+                                <th class="num">（故四）</th>
+                                <th class="num">死球</th>
+                                <th class="num">滾地出局</th>
+                                <th class="num">飛球出局</th>
+                                <th class="num">防禦率</th>
+                                <th class="num">完投</th>
+                                <th class="num">完封</th>
+                                <th class="num">無四死球</th>
+                                <th class="num">救援失敗</th>
+                                <th class="num">好球數</th>
+                                <th class="num">被盜壘</th>
+                                <th class="num">暴投</th>
+                                <th class="num">犯規</th>
+                                <th class="num">刺殺</th>
+                                <th class="num">助殺</th>
+                                <th class="num">雙殺</th>
+                                <th class="num">三殺</th>
+                                <th class="num">失誤</th>
+                                <th class="num">牽制出局</th>
+                            </tr>
+                            <tr v-for="(item, index) in followScore" :key="item.SId.Value">
+                                <td class="sticky num">{{ dateFormat(new Date(item.GameDate), "YYYY/MM/DD") }}</td>
+                                <td class="num"><a :href="getGameUrl(item.GameDate, item.KindCode, item.GameSno, item.PresentStatus)">{{ item.GameSno }}</a></td>
+                                <td>{{ item.FightTeamAbbrName }}</td>
+                                <td>{{ item.RoleType }}</td>
+                                <td>{{ (item.GameResult == "" ? "無" : item.GameResult) }}</td>
+                                <td class="num">{{ item.InningPitchedCnt }}</td>
+                                <td class="num">{{ item.PlateAppearances }}</td>
+                                <td class="num">{{ item.PitchCnt }}</td>
+                                <td class="num">{{ item.HittingCnt }}</td>
+                                <td class="num">{{ item.HomeRunCnt }}</td>
+                                <td class="num">{{ item.StrikeOutCnt }}</td>
+                                <td class="num">{{ item.RunCnt }}</td>
+                                <td class="num">{{ item.EarnedRunCnt }}</td>
+                                <td class="num">{{ item.BasesONBallsCnt }}</td>
+                                <td class="num">（{{ item.IntentionalBasesONBallsCnt }}）</td>
+                                <td class="num">{{ item.HitBYPitchCnt }}</td>
+                                <td class="num">{{ item.GroundOut }}</td>
+                                <td class="num">{{ item.FlyOut }}</td>
+                                <td class="num">{{ item.Era.toFixed(2) }}</td>
+                                <td class="num">{{ item.CompleteGames }}</td>
+                                <td class="num">{{ item.ShoutOut }}</td>
+                                <td class="num">{{ item.NoBaseBalled }}</td>
+                                <td class="num">{{ item.SaveFail }}</td>
+                                <td class="num">{{ item.StrikeCnt }}</td>
+                                <td class="num">{{ item.StealCnt }}</td>
+                                <td class="num">{{ item.WildPitchCnt }}</td>
+                                <td class="num">{{ item.BalkCnt }}</td>
+                                <td class="num">{{ item.PutoutCnt }}</td>
+                                <td class="num">{{ item.AssistCnt }}</td>
+                                <td class="num">{{ item.JoinDoublePlayCnt }}</td>
+                                <td class="num">{{ item.JoinTripplePlayCnt }}</td>
+                                <td class="num">{{ item.ErrorCnt }}</td>
+                                <td class="num">{{ item.PitchOutCnt }}</td>
+                            </tr>
+                        </table>
+                        <!--投手逐場投球成績表 end-->
+                    </div>
+                </div>
+            </div>
+            <!-- InstanceEndEditable -->
+        </div>
+    </div>
+</div>
+
+
+
+        <div class="BtnTop">
+            <a href="#" title="回最上層">TOP</a>
+        </div>
+
+        <footer id="Footer">
+            <div>
+                <div class="btn_links">
+                    <ul>
+                            <li><a href="https://www.sportslottery.com.tw/" target="_blank" title="台灣運彩"><span><img src="https://www.cpbl.com.tw/files/file_pool/1/0l137348447265964005/12_2.jpg" alt="台灣運彩" /></span></a></li>
+                            <li><a href="https://www.cpbl.com.tw/news/cont?q=%E7%90%83%E6%A3%92%E8%AA%8D%E8%AD%89&amp;sid=0O318425694024798050" target="_blank" title="球棒認證公告"><span><img src="https://www.cpbl.com.tw/files/file_pool/1/0l109743480637249470/14.jpg" alt="球棒認證公告" /></span></a></li>
+                            <li><a href="https://www.cpbl.com.tw/xmdoc/cont?sid=0L132724366328939235" target="_blank" title="已完成球棒之比賽用球棒廠商"><span><img src="https://www.cpbl.com.tw/files/file_pool/1/0l109743480193360443/15.jpg" alt="已完成球棒之比賽用球棒廠商" /></span></a></li>
+                            <li><a href="https://www.cpbl.com.tw/xmdoc/cont?&amp;sid=0L132769227389558635" target="_blank" title="中華職棒業務合作"><span><img src="https://www.cpbl.com.tw/files/file_pool/1/0l109743480559491425/16.jpg" alt="中華職棒業務合作" /></span></a></li>
+                            <li><a href="http://twbaa.org/" target="_blank" title="台灣女子棒球運動推廣協會"><span><img src="https://www.cpbl.com.tw/files/file_pool/1/0l109746420739708798/twbaa_logo_full-color-rgb-01.jpg" alt="台灣女子棒球運動推廣協會" /></span></a></li>
+                            <li><a href="https://www.cpbl.com.tw/news/cont?sid=0M003476575671626729" target="_blank" title="官網招募"><span><img src="https://www.cpbl.com.tw/files/file_pool/1/0l244602968503278790/2021%e5%ae%98%e7%b6%b2_%e6%8b%9b%e5%8b%9fbanner.png" alt="官網招募" /></span></a></li>
+                            <li><a href="https://cpbl.cyberbiz.co/" target="_blank" title="CPBL商城"><span><img src="https://www.cpbl.com.tw/files/file_pool/1/0o278578272640193805/2024%e5%ae%98%e7%b6%b2banner.png" alt="CPBL商城" /></span></a></li>
+                            <li><a href="https://www.facebook.com/PHB.ALLIN" target="_blank" title="強棒出擊"><span><img src="https://www.cpbl.com.tw/files/file_pool/1/0q005379970763627946/s__8503307.png" alt="強棒出擊" /></span></a></li>
+                    </ul>
+                </div>
+
+                <div class="teams">
+                    <ul>
+                            <li><a href="/team?ClubNo=ACN" title="中信兄弟" style="background-image:url('/files/file_pool/1/0l109765752552535770/logo_brothers_large.png')">中信兄弟</a></li>
+                            <li><a href="/team?ClubNo=ADD" title="統一7-ELEVEn獅" style="background-image:url('/files/file_pool/1/0l109765751918656742/logo_lions_large.png')">統一7-ELEVEn獅</a></li>
+                            <li><a href="/team?ClubNo=AJL" title="樂天桃猿" style="background-image:url('/files/file_pool/1/0o012550226923298142/2024_cpbl%e5%85%ad%e9%9a%8alogo_r_%e5%ae%98%e7%b6%b2.png')">樂天桃猿</a></li>
+                            <li><a href="/team?ClubNo=AEO" title="富邦悍將" style="background-image:url('/files/file_pool/1/0l109765750739708798/logo_fubon_large.png')">富邦悍將</a></li>
+                            <li><a href="/team?ClubNo=AAA" title="味全龍" style="background-image:url('/files/file_pool/1/0l109765750195839770/logo_dragon_large.png')">味全龍</a></li>
+                            <li><a href="/team?ClubNo=AKP" title="台鋼雄鷹" style="background-image:url('https://www.cpbl.com.tw/files/file_pool/1/0n255385839510091777/tsg-logo0912.png')">台鋼雄鷹</a></li>
+                    </ul>
+                </div>
+
+                <div class="col_left">
+                    <div class="logo"><div style="background-image:url(/theme/common/images/project/logo_new.png)">中華職棒大聯盟全球資訊網 The Official Site of CPBL</div></div>
+                    <div class="footer_menu">
+                        <ul>
+                            <li><a href="/about/about">關於中職</a></li>
+                            <li><a href="/contactus">聯絡我們</a></li>
+                            <li><a href="http://museum.cpbl.com.tw/" target="_blank">線上文物館</a></li>
+                            <li><a href="/field">球場介紹</a></li>
+                            <li><a href="/teamhistory">球隊沿革</a></li>
+                            <li><a href="https://www.cpbl.com.tw/files/file_pool/1/0q098634730686681733/%e6%a3%92%e7%90%83%e8%a6%8f%e5%89%87.pdf" target="_blank">棒球規則</a></li>
+                            <li><a href="/theme/client/download/%e8%a3%81%e5%88%a4%e5%9f%b7%e6%b3%95%e6%89%8b%e5%86%8a%e8%a6%8f%e5%89%87%e8%a3%9c%e8%bf%b0.pdf" target="_blank">棒球補述</a></li>
+                            <li><a href="/theme/client/download/%e8%81%af%e7%9b%9f%e8%a6%8f%e7%ab%a0.pdf" target="_blank">聯盟規章</a></li>
+                            <li><a href="/sitenav">網站地圖</a></li>
+                        </ul>
+                    </div>
+                    <div class="copyright">
+                        中華職棒 版權所有 &copy;
+                        2026
+                        All rights reserved.
+                    </div>
+                </div>
+
+                <div class="col_right">
+                    <div class="follow_us">
+                        <dl>
+                            <dt>關注我們：</dt>
+                            <dd class="fb"><a href="https://www.facebook.com/heartbaseball?fref=ts" target="_blank" title="(開啟新視窗)">Facebook粉絲團</a></dd>
+                            <dd class="ig"><a href="https://www.instagram.com/cpbl_official/?hl=zh-tw" target="_blank" title="(開啟新視窗)">Instagram</a></dd>
+                            <dd class="youtube"><a href="https://www.youtube.com/user/CPBLofficial" target="_blank" title="(開啟新視窗)">YouTube頻道</a></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <div id="nav">
+            <div class="switch"><a href="#MenuMobile"><span class="menu-action"><i></i></span></a></div>
+            <div id="MenuMobile">
+                <ul>
+                    <li class="mm-search"></li>
+                    <li><a href="/">首頁</a></li>
+                    <li><a href="/xmdoc">最新消息</a></li>
+                    <li><a href="/schedule">賽程</a></li>
+                    <li><a href="/box">成績看板</a></li>
+                    <li><a href="/standings/season">球隊戰績</a></li>
+                    <li>
+                        <a href="javascript:;">數據統計</a>
+                        <ul>
+                            <li><a href="/stats/toplist">單項排行榜</a></li>
+                            <li><a href="/stats/recordall">全記錄查詢</a></li>
+                            <li><a href="/stats/yearaward">年度獎項得主</a></li>
+                            <li><a href="/stats/hr">歷年全壘打明細</a></li>
+                            <li><a href="/stats/mvp">單月MVP</a></li>
+                            <li><a href="/specialreport/cont?SId=0L090754347267822514">紀錄特別報導</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">球隊</a>
+                        <ul>
+                                <li><a href="/team?ClubNo=ACN">中信兄弟</a></li>
+                                <li><a href="/team?ClubNo=ADD">統一7-ELEVEn獅</a></li>
+                                <li><a href="/team?ClubNo=AJL">樂天桃猿</a></li>
+                                <li><a href="/team?ClubNo=AEO">富邦悍將</a></li>
+                                <li><a href="/team?ClubNo=AAA">味全龍</a></li>
+                                <li><a href="/team?ClubNo=AKP">台鋼雄鷹</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">球員</a>
+                        <ul>
+                            <li><a href="/player">球員點將錄</a></li>
+                            <li><a href="/player/trans">球員異動</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="https://stats.cpbl.com.tw/" target="_blank">進階數據</a>
+                    </li>
+
+                    <li>
+                        <a href="https://cpbl.cyberbiz.co/">聯盟商城</a>
+                    </li>
+
+                    <!--li><a href="javascript:;">票務</a></li-->
+                    
+                    <li><a href="/about/about">關於中職</a></li>
+                    <li><a href="/contactus">聯絡我們</a></li>
+                    <li><a href="http://museum.cpbl.com.tw" target="_blank">線上文物館</a></li>
+                    <li><a href="/field">球場介紹</a></li>
+                    <li><a href="https://www.cpbl.com.tw/files/file_pool/1/0q098634730686681733/%e6%a3%92%e7%90%83%e8%a6%8f%e5%89%87.pdf" target="_blank">棒球規則</a></li>
+                    <li><a href="/theme/client/download/%e8%a3%81%e5%88%a4%e5%9f%b7%e6%b3%95%e6%89%8b%e5%86%8a%e8%a6%8f%e5%89%87%e8%a3%9c%e8%bf%b0.pdf" target="_blank">棒球補述</a></li>
+                    <li><a href="/theme/client/download/%e8%81%af%e7%9b%9f%e8%a6%8f%e7%ab%a0.pdf" target="_blank">聯盟規章</a></li>
+                    <li><a href="/sitenav">網站地圖</a></li>
+                    <li><a href="https://en.cpbl.com.tw">English</a></li>
+                    
+                    
+                    <li><a href="https://hamivideo.hinet.net/main/606.do" target="_blank">CPBLTV</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="/theme/common/js/dayjs.min.js?v=20210729"></script>
+    <script>
+        var app = new Vue({
+            el: '#bindVue',
+            data: {
+                url:{
+                    box: '/box',
+                    person: '/team/person',
+                    team: '/team'
+                },
+                acnt: '0000001339',
+                options:{
+                    kindCodeOpts: JSON.parse('[{"Text":"一軍例行賽","Value":"A"},{"Text":"一軍總冠軍賽","Value":"C"},{"Text":"一軍季後挑戰賽","Value":"E"},{"Text":"一軍熱身賽","Value":"G"},{"Text":"一軍明星賽","Value":"B"},{"Text":"二軍例行賽","Value":"D"},{"Text":"二軍總冠軍賽","Value":"F"},{"Text":"未來之星邀請賽","Value":"H"},{"Text":"國際交流賽","Value":"X"}]' || []),
+                    yearOpts: JSON.parse('[{"Text":"2026","Value":"2026"},{"Text":"2025","Value":"2025"},{"Text":"2024","Value":"2024"},{"Text":"2023","Value":"2023"},{"Text":"2022","Value":"2022"},{"Text":"2021","Value":"2021"},{"Text":"2020","Value":"2020"},{"Text":"2019","Value":"2019"}]' || []),
+                },
+                // 守備位置 (投手或野手)
+                defendStation: '游擊手',
+                kindCode: 'A',
+                year: '2026',
+                followScore: []
+            },
+            created: function () {
+                var _this = this;
+                $(function(){
+                    _this.getFollowScore();
+                });
+            },
+            mounted: function () {
+
+            },
+            methods: {
+                getSelectOpts: function() {
+                    var _this = this;
+
+                    $("body").block({ message: '<img alt="" border="0" src="/theme/common/images/loader.gif" />', css: { width: "32px", height: "32px", border: "0px" }, overlayCSS: { backgroundColor: "#fff" } });
+
+                    $.ajax({
+                        url: "/team/getfollowoptsaction",
+                        type: "POST",
+                        headers: {
+                            RequestVerificationToken: '3VBCOLiClr675cZIxRDFfbn0sKnXFg5kZZVXdnByFNt7mYFLAZJviaeDlV-OzSz7JJSH1ghWnGr67PEXVnt7AyPM1yQ1:f0VHIf5k16mgaERc1gWs3VA6hlykdg6C_6W7huZ4vZdQf_tZVVCF8JpGlyy8vf1ZoF1XMVztCppNBBpDt5f0dzlFw5Q1'
+                        },
+                        data: { acnt: _this.acnt, defendStation: _this.defendStation, year: _this.year, kindCode: _this.kindCode },
+                        success: function (result) {
+                            if (result.Success) {
+                                _this.options.yearOpts = JSON.parse(result.YearOpts);
+                                _this.year = result.Year;
+                            }
+                        },
+                        error: function (errMsg) {
+                            console.log(errMsg)
+                        },
+                        complete: function () {
+                            $("body").unblock()
+                        }
+                    })
+                },
+                // 取得成績資料
+                getFollowScore: function() {
+                    var _this = this;
+
+                    $("body").block({ message: '<img alt="" border="0" src="/theme/common/images/loader.gif" />', css: { width: "32px", height: "32px", border: "0px" }, overlayCSS: { backgroundColor: "#fff" } });
+
+                    $.ajax({
+                        url: "/team/getfollowscore",
+                        type: "POST",
+                        headers: {
+                            RequestVerificationToken: 'v9UQvBG4SoPynDas34PChgfE-WxylqQx261qlLtT02Ul2-X-b4aw_RfoflwOUBJrCYZAqtv6EvxTm37qjXq4WzkEMG01:ZRuWinWdMDVPNDnSqZ6Q8xmY0jajNTq_QSq4NZZPZx5FJL1mhqhyoCmXwUlWCpmXzb1JczRr6xSSlxtnTkQ2kN9-TxQ1'
+                        },
+                        data: { acnt: _this.acnt, defendStation: _this.defendStation, year: _this.year, kindCode: _this.kindCode },
+                        success: function (result) {
+                            if (result.Success) {
+                                 _this.followScore = JSON.parse(result.FollowScore || '[]');
+                            }
+                        },
+                        error: function (errMsg) {
+                            console.log(errMsg)
+                        },
+                        complete: function () {
+                            $("body").unblock()
+                        }
+                    });
+                },
+                dateFormat: function(date, format) {
+                    return dayjs(date).format(format);
+                },
+                getGameUrl: function(gameDate, kindCode, gameSno, presentStatus) {
+                    var url = this.url.box + '?year=' + this.dateFormat(new Date(gameDate), 'YYYY') + '&kindCode=' + kindCode + '&gameSno=' + gameSno;
+            
+                    if(presentStatus == '0'){
+                        url += '&presentStatus=0';
+                    }
+
+                    return url;
+                },
+                getPlayerUrl: function(acnt) {
+                    return this.url.person + '?Acnt=' + acnt;
+                },
+                getTeamUrl: function(teamNo) {
+                    return this.url.team + '?TeamNo=' + teamNo;
+                }
+            }
+        })
+    </script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVM9WZM59B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XVM9WZM59B');
+    </script>
+</body>
+</html>
