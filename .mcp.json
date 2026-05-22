@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "cpbl-statistics": {
+      "type": "stdio",
+      "command": "uv",
+      "args": ["run", "mcp-cpbl-statistics"]
+    }
+  }
+}
