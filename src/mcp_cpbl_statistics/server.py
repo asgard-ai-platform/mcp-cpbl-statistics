@@ -1,11 +1,12 @@
 from fastmcp import FastMCP
 
-from mcp_cpbl_statistics.tools import season_standings, toplist
+from mcp_cpbl_statistics.tools import player, season_standings, toplist
 
 mcp = FastMCP("cpbl-statistics")
 
 season_standings.register(mcp)
 toplist.register(mcp)
+player.register(mcp)
 
 
 def main() -> None:
