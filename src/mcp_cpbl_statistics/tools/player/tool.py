@@ -65,12 +65,12 @@ def register(mcp: FastMCP) -> None:
         打者回傳打擊成績，投手回傳投球成績，兩棲球員可能兩者都有。
         """
         page_url = f"{_BASE_URL}{_PERSON_PATH}?acnt={acnt}"
-        batting_resp, pitching_resp = await _fetch_stats(page_url, acnt, kind_code, year)
+        batting_resp, pitching_resp, fighter_resp = await _fetch_stats(page_url, acnt, kind_code, year)
 
         if year is None:
             return parse_player_career_stats(acnt, kind_code, batting_resp, pitching_resp)
         else:
-            return parse_player_yearly_stats(acnt, kind_code, year, batting_resp, pitching_resp)
+            return parse_player_yearly_stats(acnt, kind_code, year, batting_resp, pitching_resp, fighter_resp)
 
 
     @mcp.tool()
@@ -111,8 +111,15 @@ async def _fetch_stats(
     acnt: str,
     kind_code: str,
     year: int | None,
-) -> tuple[dict, dict]:
-    """Fetch batting + pitching stats in one session. Uses career or yearly endpoints."""
+) -> tuple[dict, dict, dict | None]:
+    """Fetch batting + pitching + (yearly only) fighter stats in one session.
+
+    Returns (batting_resp, pitching_resp, fighter_resp).
+    fighter_resp is None when year is None (career mode).
+    """
+    import re as _re
+    from bs4 import BeautifulSoup as _BS
+
     if year is None:
         batting_endpoint = "/team/getbattingcareerscore"
         pitching_endpoint = "/team/getpitchcareerscore"
@@ -139,7 +146,22 @@ async def _fetch_stats(
 
         batting_r = await client.post(f"{origin}{batting_endpoint}", data=data, headers=post_headers)
         pitching_r = await client.post(f"{origin}{pitching_endpoint}", data=data, headers=post_headers)
-
         batting_r.raise_for_status()
         pitching_r.raise_for_status()
-        return batting_r.json(), pitching_r.json()
+
+        fighter_resp = None
+        if year is not None:
+            # detect defendStation from page HTML
+            soup = _BS(page_resp.text, "html.parser")
+            station_m = _re.search(r"defendStation:\s*['\"]([^'\"]+)['\"]", page_resp.text)
+            defend_station = station_m.group(1) if station_m else ""
+
+            fighter_r = await client.post(
+                f"{origin}/team/getfighterscore",
+                data={"acnt": acnt, "year": str(year), "defendStation": defend_station},
+                headers=post_headers,
+            )
+            fighter_r.raise_for_status()
+            fighter_resp = fighter_r.json()
+
+        return batting_r.json(), pitching_r.json(), fighter_resp

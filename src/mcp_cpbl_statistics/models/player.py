@@ -65,6 +65,44 @@ class PitchingStats(BaseModel):
     whip: float
 
 
+class BattingVsEntry(BaseModel):
+    """打者對單一球隊的年度累計成績"""
+    opponent: str
+    games: int
+    plate_appearances: int
+    at_bats: int
+    hits: int
+    doubles: int
+    triples: int
+    home_runs: int
+    rbi: int
+    walks: int
+    strikeouts: int
+    stolen_bases: int
+    avg: float
+    obp: float
+    slg: float
+    ops: float
+
+
+class PitchingVsEntry(BaseModel):
+    """投手對單一球隊的年度累計成績"""
+    opponent: str
+    games: int
+    wins: int
+    losses: int
+    saves: int
+    innings_pitched: float
+    hits: int
+    home_runs: int
+    walks: int
+    strikeouts: int
+    runs: int
+    earned_runs: int
+    era: float
+    whip: float
+
+
 class PlayerStats(BaseModel):
     """球員成績（有資料的欄位才會有值）"""
     acnt: str
@@ -73,3 +111,4 @@ class PlayerStats(BaseModel):
     year: int | None        # None 表示生涯累計
     batting: BattingStats | None = None
     pitching: PitchingStats | None = None
+    vs_teams: list[BattingVsEntry] | list[PitchingVsEntry] | None = None  # 指定年度才有

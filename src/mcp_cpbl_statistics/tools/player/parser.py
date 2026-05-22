@@ -6,7 +6,9 @@ from bs4 import BeautifulSoup
 
 from mcp_cpbl_statistics.models.player import (
     BattingStats,
+    BattingVsEntry,
     PitchingStats,
+    PitchingVsEntry,
     PlayerProfile,
     PlayerStats,
 )
@@ -139,14 +141,68 @@ def parse_player_career_stats(
     )
 
 
+def _parse_batting_vs(row: dict) -> BattingVsEntry:
+    return BattingVsEntry(
+        opponent=row.get("FightTeamName", ""),
+        games=row.get("TotalGames") or 0,
+        plate_appearances=row.get("PlateAppearances") or 0,
+        at_bats=row.get("HitCnt") or 0,
+        hits=row.get("HittingCnt") or 0,
+        doubles=row.get("TwoBaseHitCnt") or 0,
+        triples=row.get("ThreeBaseHitCnt") or 0,
+        home_runs=row.get("HomeRunCnt") or 0,
+        rbi=row.get("RunBattedINCnt") or 0,
+        walks=row.get("BasesONBallsCnt") or 0,
+        strikeouts=row.get("StrikeOutCnt") or 0,
+        stolen_bases=row.get("StealBaseOKCnt") or 0,
+        avg=row.get("Avg") or 0.0,
+        obp=row.get("Obp") or 0.0,
+        slg=row.get("Slg") or 0.0,
+        ops=row.get("Ops") or 0.0,
+    )
+
+
+def _parse_pitching_vs(row: dict) -> PitchingVsEntry:
+    ip_whole = row.get("InningPitchedCnt") or 0
+    ip_thirds = row.get("InningPitchedDiv3Cnt") or 0
+    innings_pitched = round(ip_whole + ip_thirds / 3, 2) if (ip_whole or ip_thirds) else (row.get("InningPitched") or 0.0)
+    return PitchingVsEntry(
+        opponent=row.get("FightTeamName", ""),
+        games=row.get("TotalGames") or 0,
+        wins=row.get("Wins") or 0,
+        losses=row.get("Loses") or 0,
+        saves=row.get("SaveOK") or 0,
+        innings_pitched=innings_pitched,
+        hits=row.get("HittingCnt") or 0,
+        home_runs=row.get("HomeRunCnt") or 0,
+        walks=row.get("BasesONBallsCnt") or 0,
+        strikeouts=row.get("StrikeOutCnt") or 0,
+        runs=row.get("RunCnt") or 0,
+        earned_runs=row.get("EarnedRunCnt") or 0,
+        era=row.get("Era") or 0.0,
+        whip=row.get("Whip") or 0.0,
+    )
+
+
+def parse_vs_teams(fighter_resp: dict, is_pitcher: bool) -> list[BattingVsEntry] | list[PitchingVsEntry]:
+    """Parse getfighterscore API response into vs_teams list."""
+    rows: list[dict] = json.loads(fighter_resp.get("FighterScore") or "[]")
+    if not rows:
+        return []
+    if is_pitcher:
+        return [_parse_pitching_vs(r) for r in rows]
+    return [_parse_batting_vs(r) for r in rows]
+
+
 def parse_player_yearly_stats(
     acnt: str,
     kind_code: str,
     year: int,
     batting_resp: dict,
     pitching_resp: dict,
+    fighter_resp: dict | None = None,
 ) -> PlayerStats:
-    """Parse getbattingscore + getpitchscore API responses, filtered to a single year."""
+    """Parse getbattingscore + getpitchscore + (optionally) getfighterscore."""
     batting_rows: list[dict] = json.loads(batting_resp.get("BattingScore") or "[]")
     pitching_rows: list[dict] = json.loads(pitching_resp.get("PitchScore") or "[]")
 
@@ -157,8 +213,12 @@ def parse_player_yearly_stats(
     if batting_row is None and pitching_row is None:
         raise ValueError(f"No stats found for acnt={acnt} year={year} kind_code={kind_code}")
 
-    all_rows = batting_rows + pitching_rows
     name = _extract_name(batting_rows, pitching_rows)
+    is_pitcher = pitching_row is not None and batting_row is None
+
+    vs_teams = None
+    if fighter_resp is not None:
+        vs_teams = parse_vs_teams(fighter_resp, is_pitcher) or None
 
     return PlayerStats(
         acnt=acnt,
@@ -167,4 +227,5 @@ def parse_player_yearly_stats(
         year=year,
         batting=_parse_batting(batting_row, year) if batting_row else None,
         pitching=_parse_pitching(pitching_row, year) if pitching_row else None,
+        vs_teams=vs_teams,
     )
