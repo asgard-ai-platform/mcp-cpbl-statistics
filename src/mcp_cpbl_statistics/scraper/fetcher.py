@@ -39,7 +39,8 @@ async def fetch_html_and_post_json(page_url: str, api_path: str, data: dict) -> 
         token = m.group(1)
 
         # Step 3: POST to the API
-        origin = str(page_resp.url).split("/team/")[0]  # e.g. https://cpbl.com.tw
+        url = page_resp.url
+        origin = f"{url.scheme}://{url.host}"  # e.g. https://cpbl.com.tw
         api_url = origin + api_path
         api_resp = await client.post(
             api_url,
