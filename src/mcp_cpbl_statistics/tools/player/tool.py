@@ -1,12 +1,14 @@
-"""MCP tools: search_players, get_player_profile, get_player_stats."""
+"""MCP tools: search_players, get_player_profile, get_player_stats, get_player_apart_stats."""
 from typing import Annotated
 
 import httpx
 from fastmcp import FastMCP
 from pydantic import Field
 
+from mcp_cpbl_statistics.models.apart import PlayerApartStats
 from mcp_cpbl_statistics.models.player import PlayerProfile, PlayerStats
 from mcp_cpbl_statistics.scraper.fetcher import _CSRF_RE, _HEADERS, fetch_html
+from mcp_cpbl_statistics.tools.player.apart import fetch_player_apart_stats
 from mcp_cpbl_statistics.tools.player.index import fetch_player_index
 from mcp_cpbl_statistics.tools.player.parser import (
     parse_player_career_stats,
@@ -66,6 +68,25 @@ def register(mcp: FastMCP) -> None:
             return parse_player_career_stats(acnt, kind_code, batting_resp, pitching_resp)
         else:
             return parse_player_yearly_stats(acnt, kind_code, year, batting_resp, pitching_resp)
+
+
+    @mcp.tool()
+    async def get_player_apart_stats(
+        acnt: Annotated[str, Field(description="球員帳號 ID，例如 0000003563")],
+        kind_code: Annotated[str, Field(description=f"賽制代碼：{KIND_CODE_DESCRIPTIONS}")] = "A",
+        year: Annotated[str, Field(description="年度：9999=生涯累計（預設），或具體年份如 2025")] = "9999",
+        group: Annotated[int | None, Field(description=(
+            "指定分項維度（不填則回傳全部）："
+            "1=主客場、3=對戰對象、4=出賽角色/壘上跑者、5=壘上跑者/出局數、"
+            "6=出局數/局數、7=局數/比分情況、8=比分情況/月份、9=月份/球場、10=球場/打序"
+        ))] = None,
+    ) -> PlayerApartStats:
+        """取得 CPBL 球員分項成績（進階切片統計）。
+        自動偵測球員為打者或投手，回傳各維度下的分項數據。
+        打者欄位：PA、H、HR、RBI、AVG、OBP、SLG、OPS。
+        投手欄位：G、W、L、SV、IP、H、HR、BB、K、ERA、WHIP。
+        """
+        return await fetch_player_apart_stats(acnt, kind_code, year, group)
 
 
 async def _fetch_stats(
