@@ -1,4 +1,5 @@
-"""MCP tools: search_players, get_player_profile, get_player_stats, get_player_apart_stats."""
+"""MCP tools: search_players, get_player_profile, get_player_stats,
+get_player_apart_stats, get_player_game_log."""
 from typing import Annotated
 
 import httpx
@@ -6,9 +7,11 @@ from fastmcp import FastMCP
 from pydantic import Field
 
 from mcp_cpbl_statistics.models.apart import PlayerApartStats
+from mcp_cpbl_statistics.models.game_log import PlayerGameLog
 from mcp_cpbl_statistics.models.player import PlayerProfile, PlayerStats
 from mcp_cpbl_statistics.scraper.fetcher import _CSRF_RE, _HEADERS, fetch_html
 from mcp_cpbl_statistics.tools.player.apart import fetch_player_apart_stats
+from mcp_cpbl_statistics.tools.player.game_log import fetch_player_game_log
 from mcp_cpbl_statistics.tools.player.index import fetch_player_index
 from mcp_cpbl_statistics.tools.player.parser import (
     parse_player_career_stats,
@@ -87,6 +90,20 @@ def register(mcp: FastMCP) -> None:
         投手欄位：G、W、L、SV、IP、H、HR、BB、K、ERA、WHIP。
         """
         return await fetch_player_apart_stats(acnt, kind_code, year, group)
+
+    @mcp.tool()
+    async def get_player_game_log(
+        acnt: Annotated[str, Field(description="球員帳號 ID，例如 0000001339")],
+        year: Annotated[str | None, Field(description="年度，例如 '2026'。不填則使用最新可用年份。")] = None,
+        kind_code: Annotated[str, Field(description=f"賽制代碼：{KIND_CODE_DESCRIPTIONS}")] = "A",
+        last_n: Annotated[int | None, Field(description="只回傳最近 N 場（例如 10）。不填則回傳全季。")] = None,
+    ) -> PlayerGameLog:
+        """取得 CPBL 球員逐場成績。
+        打者回傳每場打擊數據（PA、H、HR、RBI、AVG 等）。
+        投手回傳每場投球數據（IP、H、BB、K、ERA 等）。
+        API 回傳順序為最新場次在前，適合查詢球員近況。
+        """
+        return await fetch_player_game_log(acnt, year, kind_code, last_n)
 
 
 async def _fetch_stats(
