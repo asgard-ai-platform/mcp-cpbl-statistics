@@ -1,3 +1,3 @@
-from mcp_cpbl_statistics.tools import player, schedule, season_standings, toplist
+from mcp_cpbl_statistics.tools import player, schedule, standings, toplist
 
-__all__ = ["season_standings", "toplist", "player", "schedule"]
+__all__ = ["standings", "toplist", "player", "schedule"]

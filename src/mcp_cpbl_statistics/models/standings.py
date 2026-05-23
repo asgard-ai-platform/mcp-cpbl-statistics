@@ -75,3 +75,16 @@ class SeasonStandings(BaseModel):
     pitching: list[TeamPitchingRow]
     batting: list[TeamBattingRow]
     fielding: list[TeamFieldingRow]
+
+
+class HistorySeasonStandings(BaseModel):
+    """歷年單一賽段（上半季、下半季或全年）的球隊戰績"""
+    label: str                      # 例如「上半季戰績」
+    standings: list[TeamStandingRow]
+
+
+class HistoryStandings(BaseModel):
+    """歷年球隊戰績（一個年度）"""
+    year: int
+    kind_code: str
+    seasons: list[HistorySeasonStandings]  # 上半季、下半季、全年
