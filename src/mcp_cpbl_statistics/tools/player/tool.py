@@ -1,5 +1,5 @@
 """MCP tools: search_players, get_player_profile, get_player_stats,
-get_player_apart_stats, get_player_game_log."""
+get_player_apart_stats, get_player_game_log, get_player_headtohead."""
 from typing import Annotated
 
 import httpx
@@ -8,10 +8,13 @@ from pydantic import Field
 
 from mcp_cpbl_statistics.models.apart import PlayerApartStats
 from mcp_cpbl_statistics.models.game_log import PlayerGameLog
+from mcp_cpbl_statistics.models.headtohead import PlayerHeadToHead
 from mcp_cpbl_statistics.models.player import PlayerProfile, PlayerStats
+from mcp_cpbl_statistics.models.teams import TEAM_CODES
 from mcp_cpbl_statistics.scraper.fetcher import _CSRF_RE, _HEADERS, fetch_html
 from mcp_cpbl_statistics.tools.player.apart import fetch_player_apart_stats
 from mcp_cpbl_statistics.tools.player.game_log import fetch_player_game_log
+from mcp_cpbl_statistics.tools.player.headtohead import fetch_player_headtohead
 from mcp_cpbl_statistics.tools.player.index import fetch_player_index
 from mcp_cpbl_statistics.tools.player.parser import (
     parse_player_career_stats,
@@ -104,6 +107,24 @@ def register(mcp: FastMCP) -> None:
         API 回傳順序為最新場次在前，適合查詢球員近況。
         """
         return await fetch_player_game_log(acnt, year, kind_code, last_n)
+
+    _team_list = "、".join(f"{v}({k})" for k, v in TEAM_CODES.items())
+
+    @mcp.tool()
+    async def get_player_headtohead(
+        acnt: Annotated[str, Field(description="球員帳號 ID，例如 0000001339")],
+        opponent_team: Annotated[str, Field(description=(
+            f"對手球隊名稱（支援部分匹配）或球隊代碼。可用球隊：{_team_list}"
+        ))],
+        kind_code: Annotated[str, Field(description=f"賽制代碼：{KIND_CODE_DESCRIPTIONS}")] = "A",
+        year: Annotated[str, Field(description="年度：9999=生涯累計（預設），或具體年份如 2025")] = "9999",
+    ) -> PlayerHeadToHead:
+        """取得 CPBL 球員對特定球隊的投打對決成績。
+        打者：回傳對該球隊每位投手的累計打擊成績（AVG/OBP/SLG/OPS/HR/RBI 等）。
+        投手：回傳該球隊每位打者面對此投手的累計成績。
+        支援球隊名稱部分匹配，例如「中信」、「味全」、「統一」。
+        """
+        return await fetch_player_headtohead(acnt, opponent_team, kind_code, year)
 
 
 async def _fetch_stats(
