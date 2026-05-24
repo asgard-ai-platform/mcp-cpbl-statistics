@@ -2,6 +2,8 @@
 
 An MCP server for CPBL (Chinese Professional Baseball League / 中華職棒) statistics, exposing AI-callable tools over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
 
+[繁體中文](README.zh-TW.md)
+
 ## Features
 
 - **stdio JSON-RPC 2.0** — Standard MCP transport protocol
