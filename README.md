@@ -20,6 +20,8 @@ An MCP server for CPBL (Chinese Professional Baseball League / 中華職棒) sta
 
 ## Available Tools
 
+This server currently exposes 10 MCP tools.
+
 ### Standings
 
 - `get_season_standings` — Get current season team standings (W/L record, pitching, batting, fielding)
