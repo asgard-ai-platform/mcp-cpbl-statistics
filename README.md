@@ -1,85 +1,121 @@
 # MCP CPBL Statistics
 
-An MCP server for CPBL (Chinese Professional Baseball League / 中華職棒) statistics, exposing AI-callable tools over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
+[![PyPI version](https://img.shields.io/pypi/v/mcp-cpbl-statistics)](https://pypi.org/project/mcp-cpbl-statistics/)
+[![Python versions](https://img.shields.io/pypi/pyversions/mcp-cpbl-statistics)](https://pypi.org/project/mcp-cpbl-statistics/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/asgard-ai-platform/mcp-cpbl-statistics)](https://github.com/asgard-ai-platform/mcp-cpbl-statistics/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/asgard-ai-platform/mcp-cpbl-statistics)](https://github.com/asgard-ai-platform/mcp-cpbl-statistics/issues)
+[![GitHub last commit](https://img.shields.io/github/last-commit/asgard-ai-platform/mcp-cpbl-statistics)](https://github.com/asgard-ai-platform/mcp-cpbl-statistics/commits/main)
+[![MCP](https://img.shields.io/badge/MCP-compatible-blue)](https://modelcontextprotocol.io/)
 
 [繁體中文](README.zh-TW.md)
 
-## Features
+An MCP server for CPBL (Chinese Professional Baseball League / 中華職棒) statistics, exposing AI-callable tools over [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
 
-- **stdio JSON-RPC 2.0** — Standard MCP transport protocol
-- **`@mcp.tool()` decorator** — Pydantic-typed tool registration
+## What This Does
+
+- **10 ready-to-use tools** covering team standings, player profiles, batting/pitching stats, game logs, head-to-head matchups, top-5 leaderboards, and game schedules
+- **MCP server (stdio JSON-RPC 2.0)** — plug into Claude Code and start asking about CPBL instantly
 - **Web scraper** — HTML scraping and XHR JSON API calls against `cpbl.com.tw`
 - **No-auth public access** — No API keys required; CSRF token handling is automatic
 - **Fixture-based unit tests** — Fast offline test suite with saved HTML/JSON fixtures
 - **Integration tests** — Live end-to-end tests against `cpbl.com.tw`, opt-in via `-m integration`
 
-## Requirements
-
-- Python `>=3.12` (developed on `3.14`)
-- `uv`
-
-## Available Tools
-
-This server currently exposes 10 MCP tools.
-
-### Standings
-
-- `get_season_standings` — Get current season team standings (W/L record, pitching, batting, fielding)
-- `get_history_standings` — Get historical standings for a given year (first half / second half / full season)
-
-### Top Lists
-
-- `get_toplist` — Get the season top-5 leaderboards for ERA, W, SV, HLD, SO, AVG, H, HR, RBI, SB
-
-### Players
-
-- `search_players` — Search active players by name (partial match); returns player ID (`acnt`), name, team
-- `get_player_profile` — Get player profile: jersey number, position, batting/throwing hand, height/weight, birthday, first appearance, education, draft
-- `get_player_stats` — Get career or single-season batting/pitching stats for a player
-- `get_player_apart_stats` — Get player split stats (home/away, vs. opponent, lineup position, runners on base, inning, score situation, month, stadium, etc.)
-- `get_player_game_log` — Get per-game log for a player, optionally filtered by year or last N games
-- `get_player_headtohead` — Get head-to-head matchup stats for a player against a specific team
-
-### Schedule
-
-- `get_schedule` — Query game schedule / results, filterable by year, month, team, and game type; finished games include score, W/L/SV pitchers, and MVP
-
-### `kind_code` values (shared across tools)
-
-| Code | Description |
-|------|-------------|
-| `A`  | 一軍例行賽 (1st team regular season, **default**) |
-| `B`  | 一軍明星賽 (All-Star game) |
-| `C`  | 一軍總冠軍賽 (Championship series) |
-| `D`  | 二軍例行賽 (2nd team) |
-| `E`  | 一軍季後挑戰賽 (Postseason challenger) |
-| `G`  | 一軍熱身賽 (Spring training) |
+---
 
 ## Quick Start
 
-```bash
-# Install dependencies
-uv sync
+### Install
 
-# Run server (stdio transport)
-uv run mcp-cpbl-statistics
+```bash
+pip install mcp-cpbl-statistics
 ```
 
-## MCP Client Configuration
+Or with uv:
 
-The repository includes a `.mcp.json` for local use:
+```bash
+uv sync
+```
+
+### Use with Claude Code
+
+```bash
+claude mcp add --transport stdio cpbl-statistics -- mcp-cpbl-statistics
+```
+
+### Use with Claude Desktop
+
+Add to your `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "cpbl-statistics": {
-      "type": "stdio",
       "command": "uv",
       "args": ["run", "mcp-cpbl-statistics"]
     }
   }
 }
 ```
+
+Or with pip:
+
+```json
+{
+  "mcpServers": {
+    "cpbl-statistics": {
+      "command": "mcp-cpbl-statistics"
+    }
+  }
+}
+```
+
+---
+
+## Tools (10)
+
+### Standings
+
+| Tool | Description |
+|------|-------------|
+| `get_season_standings` | Current season team standings (W/L record, pitching, batting, fielding) |
+| `get_history_standings` | Historical standings for a given year (first half / second half / full season) |
+
+### Top Lists
+
+| Tool | Description |
+|------|-------------|
+| `get_toplist` | Season top-5 leaderboards for ERA, W, SV, HLD, SO, AVG, H, HR, RBI, SB |
+
+### Players
+
+| Tool | Description |
+|------|-------------|
+| `search_players` | Search active players by name (partial match); returns player ID, name, team |
+| `get_player_profile` | Player profile: jersey number, position, batting/throwing hand, height/weight, birthday, first appearance, education, draft |
+| `get_player_stats` | Career or single-season batting/pitching stats for a player |
+| `get_player_apart_stats` | Split stats (home/away, vs. opponent, lineup position, runners on base, inning, score situation, month, stadium, etc.) |
+| `get_player_game_log` | Per-game log for a player, optionally filtered by year or last N games |
+| `get_player_headtohead` | Head-to-head matchup stats for a player against a specific team |
+
+### Schedule
+
+| Tool | Description |
+|------|-------------|
+| `get_schedule` | Game schedule / results, filterable by year, month, team, and game type; finished games include score, W/L/SV pitchers, and MVP |
+
+### `kind_code` values (shared across tools)
+
+| Code | Description |
+|------|-------------|
+| `A` | 一軍例行賽 (1st team regular season, **default**) |
+| `B` | 一軍明星賽 (All-Star game) |
+| `C` | 一軍總冠軍賽 (Championship series) |
+| `D` | 二軍例行賽 (2nd team) |
+| `E` | 一軍季後挑戰賽 (Postseason challenger) |
+| `G` | 一軍熱身賽 (Spring training) |
+
+---
 
 ## Project Structure
 
@@ -129,4 +165,4 @@ All data is scraped from the official CPBL website ([cpbl.com.tw](https://cpbl.c
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT
