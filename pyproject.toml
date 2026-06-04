@@ -1,6 +1,6 @@
 [project]
 name = "mcp-cpbl-statistics"
-version = "0.1.0"
+version = "0.1.1"
 description = "MCP server for CPBL statistics"
 readme = "README.md"
 license = "MIT"
@@ -23,6 +23,11 @@ dependencies = [
     "beautifulsoup4>=4.12",
     "pydantic>=2.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/asgard-ai-platform/mcp-cpbl-statistics"
+Repository = "https://github.com/asgard-ai-platform/mcp-cpbl-statistics"
+Issues = "https://github.com/asgard-ai-platform/mcp-cpbl-statistics/issues"
 
 [project.scripts]
 mcp-cpbl-statistics = "mcp_cpbl_statistics.server:main"
